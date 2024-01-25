@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webdemo
+  name: webdemo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webdemo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: webdemo
+    spec:
+      containers:
+      - image: juanconde24/dotnet
+        name: dotnet
+
+        env:
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: http://collector.default.svc:4317

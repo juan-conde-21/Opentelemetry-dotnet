@@ -1,0 +1,37 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+exporters:
+  #logging:
+  #  logLevel: debug
+  otlp:
+    endpoint: jaeger:4317
+    tls:
+      insecure: true
+  prometheus:
+    endpoint: 0.0.0.0:8889 # This endpoint is scraped by Prometheus
+  instana:
+    endpoint: https://serverless-coral-saas.instana.io
+    agent_key: ORiJrirMTj6PiA67APP16g
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    traces:
+      receivers:
+        - otlp
+      exporters: [otlp,instana]
+    metrics:
+      receivers:
+        - otlp
+      exporters:
+        - prometheus
+          #logs:
+          #receivers:
+          #- otlp
+          #exporters:
+          #- logging

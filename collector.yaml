@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: collector
+  name: collector
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: collector
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: collector
+    spec:
+      containers:
+      - image: otel/opentelemetry-collector-contrib:0.61.0
+        name: opentelemetry-collector-contrib
+        args: ["--config","/etc/otel/config.yaml"]
+        volumeMounts:
+          - mountPath: /etc/otel/
+            name: collector-config
+      volumes:
+        - name: collector-config
+          configMap:
+            name: config.yaml
