@@ -5,7 +5,9 @@ Construir la imagen del microservicio, para ello agregamos las dependencias y co
 1. Instalar las librerias de Opentelemetry en el proyecto del microservicio.
 
 dotnet add package OpenTelemetry.Exporter.Console
+
 dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
+
 dotnet add package OpenTelemetry.Instrumentation.Http --prerelease
 
 2. Importar las librerias a nivel del codigo de la aplicacion.
