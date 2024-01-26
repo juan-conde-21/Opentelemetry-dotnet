@@ -50,8 +50,9 @@ Construir la imagen del microservicio, para ello agregamos las dependencias y co
            kubectl apply -f deploy.yaml
 
 
-6. Revisar las metricas recolectadas en el tenant instana.
+6. Revisar las trazas recolectadas en el tenant instana.
 
+![image](https://github.com/juan-conde-21/Opentelemetry-dotnet/assets/13276404/f97e478e-fcb5-4ce3-bedc-43c4e2e256c9)
 
 
 
