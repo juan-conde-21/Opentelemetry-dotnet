@@ -20,7 +20,7 @@ public class Program
     {
         using var tracerProvider = Sdk.CreateTracerProviderBuilder()
             .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(
-                serviceName: "CesarDemoApp",
+                serviceName: "DemoApp",
                 serviceVersion: "1.0.0"))
             .AddSource("OpenTelemetry.Demo.Jaeger")
             .AddHttpClientInstrumentation()
