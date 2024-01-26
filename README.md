@@ -4,17 +4,17 @@ Construir la imagen del microservicio, para ello agregamos las dependencias y co
 
 1. Instalar las librerias de Opentelemetry en el proyecto del microservicio.
 
-dotnet add package OpenTelemetry.Exporter.Console
-
-dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
-
-dotnet add package OpenTelemetry.Instrumentation.Http --prerelease
+        dotnet add package OpenTelemetry.Exporter.Console
+        
+        dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
+        
+        dotnet add package OpenTelemetry.Instrumentation.Http --prerelease
 
 2. Importar las librerias a nivel del codigo de la aplicacion.
 
-using OpenTelemetry;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
+        using OpenTelemetry;
+        using OpenTelemetry.Resources;
+        using OpenTelemetry.Trace;
 
 3. Declarar los detalles del microservicio dentro del codigo de la aplicación.
 
@@ -29,12 +29,29 @@ using OpenTelemetry.Trace;
             .Build();
 
 
-4. Construir la imagen, para este ejemplo utilizamos los archivos dentro de la carpte app/ , para ello ejecutar el siguiente comando.
+4. Construir la imagen, para este ejemplo utilizamos los archivos dentro de la carpeta app/ , para ello ejecutar el siguiente comando.
 
-Docker build -t program:latest .
+        Docker build -t dotnet:latest .
+
+   Para este ejemplo se construyo y publico la siguiente imagen "juanconde24/dotnet".
+
+5. Con la imagen construida se procede a desplegar la solucion en un cluster AKS.
+
+   Crear el configmap configurado con los datos del tenant instana.
+
+           kubectl create configmap config.yaml --from-file=config.yaml
+
+   Desplegar el deployment del collector donde se hace la referencia al configmap previamente creado.
+
+           kubectl apply -f collector.yaml
+
+   Desplegar el deployment de la aplicación.
+
+           kubectl apply -f deploy.yaml
 
 
-5. 
+6. Revisar las metricas recolectadas en el tenant instana.
+
 
 
 
